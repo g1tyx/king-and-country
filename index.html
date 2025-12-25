@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>King & Country</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <!--fav-->
+    <link rel="icon" type="image/png" href="assets/favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="assets/faviconsfavicon.svg" />
+    <link rel="shortcut icon" href="assets/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="asstes/favicons/apple-touch-icon.png" />
+    <link rel="manifest" href="assets/favicons/site.webmanifest" />
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+  </head>
+  <body>
+<script src="chs.js"></script>
+<script src="core.js"></script>
+<section id="phase-1">
+
+    <section class="combat-tab">
+      <div class="combat-tab-inner">
+
+        <div class="combat-overlay">
+
+          <div class="flex flex-wrap gap-10">
+          <div class="stats-box">
+            <p>HP: <span id="stats-hp-floating-number">-0</span><span class="stats" id="stats-hp"></span>/ <span class="stats" id="stats-max-hp"></span>
+              <span class="font-11">(Regen <span class="regen-percent"></span>/20s)</span>
+            </p>
+            <p>Strength: <span class="stats" id="stats-str"></span>
+            </p>
+            <p>Defence: <span class="stats" id="stats-def"></span>
+            </p>
+          </div>
+          <div class="stats-box">
+            <p>Combat Level: <span class="stats" id="stats-combat-lvl"></span>
+            </p>
+            <p>Heroism: <span class="stats" id="stats-heroism"></span>
+            </p>
+            <p>Emblems: <span class="stats" id="stats-emblems">0</span> 
+                            <span class="font-11">(<span id="t1">0</span>+<span id="t2">0</span>+<span id="t3">0</span>)
+                        </span>
+            </p>
+          </div>
+          
+          <div class="stats-box">
+
+            <div class="challenges">
+
+              <p>Challenges</p>
+              <p class="font-11">Fight unending wave of monsters and earn emblems to increase gold generation</p>
+
+                <br/>
+
+                <div class="flex">
+                  <div class="flex flex-col">
+                    <button id="tier-1-challenge" class="btn text-center">Tier 1</button>
+                  </div>
+                  <button id="tier-2-challenge" class="btn text-center">Tier 2</button>
+                  <button id="tier-3-challenge" class="btn text-center">Tier 3</button>
+                </div>
+              
+            </div>
+
+          </div>        
+          </div>
+          <div class="monsters">
+
+          <div class="human-kingdom-monsters">
+
+            <div class="monster slime flex flex-col">
+              <span class="monster-floating-number">-0</span>
+              <progress id="slime-hp" value="3" max="3"></progress>
+              <button id="fight-monster-slime" class="btn">Fight Slime <br />Combat Level: <span class="slime-combat-level"></span>
+              </button>
+            </div>
+            <div class="monster scorpion flex flex-col">
+              <span class="monster-floating-number">-0</span>
+              <progress id="scorpion-hp" value="6" max="6"></progress>
+              <button id="fight-monster-scorpion" class="btn">Fight Scorpion <br />Combat Level: <span class="scorpion-combat-level"></span>
+              </button>
+            </div>
+
+          </div>
+
+          <div class="dwarf-kingdom-monsters hidden">
+
+            <div class="monster bear flex flex-col">
+              <span class="monster-floating-number">-0</span>
+              <progress id="bear-hp" value="25" max="25"></progress>
+              <button id="fight-monster-bear" class="btn">Fight Bear <br />Combat Level: <span class="bear-combat-level"></span>
+              </button>
+            </div>
+            
+            <div class="monster dwarvenskeleton flex flex-col">
+              <span class="monster-floating-number">-0</span>
+              <progress id="dwarvenskeleton-hp" value="60" max="60"></progress>
+              <button id="fight-monster-dwarvenskeleton" class="btn">Fight Dwarven Skeleton <br />Combat Level: <span class="dwarvenskeleton-combat-level"></span>
+              </button>
+            </div>
+
+          </div>
+
+          <div class="goblin-kingdom-monsters hidden">
+            
+            <div class="monster griffon flex flex-col">
+              <span class="monster-floating-number">-0</span>
+              <progress id="griffon-hp" value="140" max="140"></progress>
+              <button id="fight-monster-griffon" class="btn">Fight Griffon <br />Combat Level: <span class="griffon-combat-level"></span>
+              </button>
+            </div>
+            <div class="monster wyrmling flex flex-col">
+              <span class="monster-floating-number">-0</span>
+              <progress id="wyrmling-hp" value="200" max="200"></progress>
+              <button id="fight-monster-wyrmling" class="btn">Fight Wyrmling <br />Combat Level: <span class="wyrmling-combat-level"></span>
+              </button>
+            </div>
+
+          </div>
+
+
+          <div class="boss-monster dwarfking flex flex-col hidden">
+            <span class="monster-floating-number">-0</span>
+            <progress id="dwarf-king-hp" value="14" max="14"></progress>
+            <button id="fight-monster-dwarf-king" class="btn">Fight Dwarf King <br />Combat Level: <span class="dwarf-king-combat-level"></span>
+              <br />
+              (Unlocks Dwarf Kingdom)
+            </button>
+          </div>
+
+          <div class="boss-monster goblinchieftain flex flex-col hidden">
+            <span class="monster-floating-number">-0</span>
+            <progress id="goblin-chieftain-hp" value="120" max="120"></progress>
+            <button id="fight-monster-goblin-chieftain" class="btn">Fight Goblin Chieftain <br />Combat Level: <span class="goblin-chieftain-combat-level"></span>
+              <br />
+              (Unlocks Goblin Kingdom)
+            </button>
+          </div>
+
+          <div class="boss-monster dragon flex flex-col hidden">
+            <span class="monster-floating-number">-0</span>
+            <progress id="dragon-hp" value="500" max="500"></progress>
+            <button id="fight-monster-dragon" class="btn">Fight Dragon <br />Combat Level: <span class="dragon-combat-level"></span>
+            </button>
+          </div>
+
+
+
+          <div class="boss-monster-overlay dwarfking-overlay flex flex-col">
+            <p>Unlock at 100 Heroism</p>
+          </div>
+          <div class="boss-monster-overlay goblinchieftain-overlay flex flex-col">
+            <p>Unlock at 1500 Heroism</p>
+          </div>
+          <div class="boss-monster-overlay dragon-overlay flex flex-col">
+            <p>Unlock at 5000 Heroism</p>
+          </div>
+          
+          </div>
+
+        </div>
+
+        <section class="challenge-overlay hidden">
+          <p class="text-center">Tier <span class="current-tier">0</span> Challenge (-<span class="current-tier-minus-stats">0</span>% stats)</p>
+          <p class="text-center">Current Emblems: <span class="current-emblems">0</span></p>
+          <p class="text-center">Monsters Slain: <span class="monster-slain">0</span></p>
+ 
+          <br/>
+
+
+          <div class="flex gap-20">
+            
+          <div class="stats-box stats-box-challenge">
+            <p>HP: <span id="stats-challenge-hp-floating-number">-0</span><span class="stats" id="stats-challenge-hp"></span>/ <span class="stats" id="stats-challenge-max-hp"></span>
+            </p>
+            <p>Strength: <span class="stats" id="stats-challenge-str"></span>
+            </p>
+            <p>Defence: <span class="stats" id="stats-challenge-def"></span>
+            </p>
+            <p>Combat Level: <span class="stats" id="stats-challenge-combat-lvl"></span>
+            </p>
+          </div>
+
+          <div class="stats-box stats-box-challenge challenge-monster-stats">
+            <p class="challenge-monster">Monster</p>
+            <p>HP: <span id="challenge-monster-hp-floating-number">-0</span><span class="stats" id="challenge-monster-hp"></span>/ <span class="stats" id="challenge-monster-max-hp"></span>
+            </p>
+            <p>Combat Level: <span class="stats" id="challenge-monster-combat-lvl"></span>
+            </p>
+          </div>
+
+
+          </div>
+
+          <div class="text-center margin-t-20">
+            <button id="start-challenge" class="btn">Start Challenge</button>
+            <button id="exit-challenge" class="btn">Exit Challenge</button>
+          </div>
+
+        </section>
+
+        <div class="close">X</div>
+      </div>
+    </section>
+    <section class="main-header">
+      <div class="container flex space-between">
+        <div class="resources">
+          <div>
+            <p class="pb-0">Gold: <span id="total-gold" class="total-gold">0</span>
+            </p>
+            <p class="pb-0 font-11">Total Gold/sec: <span class="gold-per-sec">0</span>
+            </p>
+            <p class="pb-0 total-runic-power-counter hidden">Runic Power: <span id="total-runic-power" class="total-runic-power">0</span></p>
+            <p class="pb-0 font-11 total-runic-power-per-sec hidden">Total Runic Power/sec: <span class="runic-power-per-sec">0</span>
+            </p>
+          </div>
+          <div>
+           <p class="pb-0 total-peasents-counter hidden">Peasants: <span class="total-peasents">0</span></p>
+           <p class="pb-0 total-scholars-counter hidden">Scholars: <span class="total-scholars">0</span></p>
+           <p class="pb-0 total-blacksmiths-counter hidden">Blacksmiths: <span id="total-blacksmiths" class="total-blacksmiths">0</span></p> 
+          </div>
+          <div>
+            <p class="pb-0 total-maan-runes-counter hidden">Maan Runes: <span class="maan-runes">0</span>
+            <p class="pb-0 total-nyd-runes-counter hidden">Nyd Runes: <span class="nyd-runes">0</span>
+            <p class="pb-0 total-uru-runes-counter hidden">Uru Runes: <span class="uru-runes">0</span>
+            </p>
+
+            <p class="pb-0 total-primal-maan-runes-counter hidden">P.Maan Runes: <span class="primal-maan-runes">0</span>
+            <p class="pb-0 total-primal-nyd-runes-counter hidden">P.Nyd Runes: <span class="primal-nyd-runes">0</span>
+            <p class="pb-0 total-primal-uru-runes-counter hidden">P.Uru Runes: <span class="primal-uru-runes">0</span>
+            </p>
+          </div>
+
+          <div>
+            <p class="pb-0 total-lapidaries-counter hidden">Lapidaries: <span id="total-lapidaries" class="total-lapidaries">0</span>
+            <p class="pb-0 font-11 total-gems-counter hidden">Cut Gems: <span id="total-gems" class="total-gems">0</span>
+            <p class="pb-0 total-miners-counter hidden">Miners: <span id="total-miners" class="total-miners">0</span>
+            <p class="pb-0 total-brewmasters-counter hidden">Brewmasters: <span id="total-brewmasters" class="total-brewmasters">0</span>
+          </div>
+
+          <div>
+            <p class="pb-0 total-ore-counter hidden">Ore: <span id="total-ore" class="total-ore">0</span>
+            <p class="pb-0 total-bronze-counter hidden">Bronze: <span id="total-bronze" class="total-bronze">0</span>
+            <p class="pb-0 total-iron-counter hidden">Iron: <span id="total-iron" class="total-iron">0</span>
+            <p class="pb-0 total-mythril-counter hidden">Mythril: <span id="total-mythril" class="total-mythril">0</span>
+            </p>
+            <p class="pb-0 total-adamant-counter hidden">Adamant: <span id="total-adamant" class="total-adamant">0</span>
+            <p class="pb-0 total-titanium-counter hidden">Titanium: <span id="total-titanium" class="total-titanium">0</span>
+            </p>
+            <p class="pb-0 total-relics-counter hidden">Relics: <span id="total-relics" class="total-relics">0</span>
+            </p>
+          </div>
+
+          <div>
+            <p class="pb-0 total-goblins-counter hidden">Goblins: <span id="total-goblins" class="total-goblins">0</span>
+            <p class="pb-0 total-mechanics-counter hidden">Mechanics: <span id="total-mechanics" class="total-mechanics">0</span>
+            <p class="pb-0 total-knowledge-counter hidden">Knowledge: <span id="total-knowledge" class="total-knowledge">0</span>
+          </div>
+        </div>
+        <div class="padding-y-20">
+          <button class="top-btn combat-btn hidden">Combat</button>
+        </div>
+      </div>
+      <section class="main-tabs">
+        <div class="flex justify-center gap-10">
+          <div class="tab tab-1 active">Human Kingdom</div>
+          <div class="tab tab-2 hidden">Dwarf Kingdom</div>
+          <div class="tab tab-3 hidden">Goblin Kingdom</div>
+          <div class="tab tab-5">Save</div>
+        </div>
+      </section>
+    </section>
+    <section class="container">
+      <section class="kingdom kingdom-1 active">
+        <section class="inner-tabs">
+          <div class="tab tab-1 active">Units</div>
+          <div class="tab tab-2 hidden">Runes</div>
+          <div class="tab tab-3 hidden">Armory</div>
+        </section>
+        <!-- units -->
+        <div class="inner-page page-1 active">
+          <div class="unit-card peasent">
+            <div class="header">
+              <p>Peasants: <span class="total-peasents">0</span> <span class="total-heroism-plus font-11 hidden">+ <span class="total-heroism font-11">0</span></span>
+              </p>
+            </div>
+            <p class="font-11">(<span class="peasent-gold-per-sec">0</span> gold/sec) </p>
+            <div class="body">
+              <button id="buy-peasent" class="btn">Buy Peasant <br />
+                <span class="peasent-cost">0</span> Gold </button>
+              <button id="buy-peasent-max" class="btn hidden">Buy Max</button>
+              <button id="auto-buy-peasent-max" class="btn auto-buy-btn hidden">Auto Buy Max <br />
+                <span class="auto-buy-peasent-max-ON-OFF">[OFF]</span>
+              </button>
+              <br />
+              <button id="increase-peasent-efficiency" class="btn">Increase Peasant Efficiency <br />x <span class="peasent-efficiency">1.00</span>
+                <br />Cost: <span class="peasent-efficiency-cost"></span> Gold </button>
+              <button id="increase-peasent-efficiency-max" class="btn hidden">Increase Efficiency Max</button>
+              <button id="increase-peasent-efficiency-max-auto" class="btn auto-buy-btn hidden">Auto Increase Max <br />
+                <span class="increase-peasent-efficiency-max-ON-OFF">[OFF]</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="unit-card unlock-card scholar-unlock hidden">
+            <div class="body">
+              <p>Unlock Scholars</p>
+              <button id="scholar-unlock" class="btn"><span class="scholar-unlock-cost">0</span> Gold </button>
+            </div>
+
+          </div>
+          <div class="unit-card scholar hidden">
+            <div class="header">
+              <p>Scholars: <span id="total-scholars" class="total-scholars">0</span>
+              </p>
+            </div>
+            <p class="font-11">(<span class="scholar-runic-power-per-sec">0</span> runic power/sec) </p>
+            <div class="body">
+              <button id="buy-scholar" class="btn">Buy Scholar <br />
+                <span class="scholar-cost">0</span> Gold </button>
+              <button id="buy-scholar-max" class="btn hidden">Buy Max</button>
+              <button id="auto-buy-scholar-max" class="btn auto-buy-btn hidden">Auto Buy Max <br />
+                <span class="auto-buy-scholar-max-ON-OFF">[OFF]</span>
+              </button>
+            </div>
+            <div class="upgrades">
+              <div class="header">
+                <p>Upgrades</p>
+              </div>
+              <div class="body">
+                <!-- rune upgrades -->
+                <button id="unlock-nyd-rune" class="btn">Unlock Nyd Rune <br />
+                  <span class="nyd-rune-cost">0</span> Gold </button>
+                <button id="unlock-uru-rune" class="btn">Unlock Uru Rune <br />
+                  <span class="uru-rune-cost">0</span> Gold </button>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="unit-card unlock-card blacksmith-unlock hidden">
+            <div class="body">
+              <p>Unlock Blacksmiths</p>
+              <button id="blacksmith-unlock" class="btn"><span class="blacksmith-unlock-cost">0</span> Gold </button>
+            </div>
+
+          </div>
+
+          <div class="unit-card blacksmith hidden">
+            <div class="header">
+              <p>Blacksmiths: <span id="total-blacksmiths" class="total-blacksmiths">0</span>
+              </p>
+            </div>
+            <p class="font-11">(<span id="blacksmith-bronze-per-sec" class="blacksmith-bronze-per-sec">0</span> bronze/sec) </p>
+            <div class="body">
+              <button id="buy-blacksmith" class="btn">Buy Blacksmith <br />
+                <span class="blacksmith-cost">0</span> Gold </button>
+              <button id="buy-blacksmith-max" class="btn hidden">Buy Max</button>
+              <button id="auto-buy-blacksmith-max" class="btn auto-buy-btn hidden">Auto Buy Max <br />
+                <span class="auto-buy-blacksmith-max-ON-OFF">[OFF]</span>
+              </button>
+              <br/>
+              <button id="increase-blacksmith-efficiency" class="btn">Increase Blacksmith Efficiency <br />x <span class="blacksmith-efficiency">1.00</span>
+                <br />Cost: <span class="blacksmith-efficiency-cost">200</span> Gold </button>
+              <button id="increase-blacksmith-efficiency-max" class="btn hidden">Increase Efficiency Max</button>
+              <button id="increase-blacksmith-efficiency-max-auto" class="btn auto-buy-btn hidden">Auto Increase Max <br />
+                <span class="increase-blacksmith-efficiency-max-ON-OFF">[OFF]</span>
+              </button>
+
+              <br/>
+
+              <div class="bronze-relic hidden">
+                <p>Each Relic increases Runic Power gain</p>
+                <button id="blacksmith-create-bronze-relic" class="btn">Create Bronze Relic <br />Cost: <span class="blacksmith-bronze-relic-cost">0</span> Bronze 
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- Runes -->
+        <div class="inner-page page-2">
+          <div class="rune-card maan">
+            <div class="header">
+              <p>Maan</p>
+            </div>
+            <div class="body">
+              <p>Infusion <br />
+                <span id="current-maan-infusion"></span>/ <span id="max-maan-infusion"></span>
+              </p>
+              <button id="infuse-maan-rune" class="btn">Infuse Runic Power</button>
+              <p class="font-12">Each Rune multiplies Peasant production</p>
+              <button id="infuse-maan-rune-auto" class="btn text-center auto-infuse hidden">Auto Infuse<br/><span class="infuse-maan-rune-auto-ON-OFF">[OFF]</span></button>
+            </div>
+          </div>
+          <div class="rune-card nyd hidden">
+            <div class="header">
+              <p>Nyd</p>
+            </div>
+            <div class="body">
+              <p>Infusion <br />
+                <span id="current-nyd-infusion"></span>/ <span id="max-nyd-infusion"></span>
+              </p>
+              <button id="infuse-nyd-rune" class="btn">Infuse Runic Power</button>
+              <p class="font-12">Each Rune multiplies Runic Power gain</p>
+              <button id="infuse-nyd-rune-auto" class="btn text-center auto-infuse hidden">Auto Infuse<br/><span class="infuse-nyd-rune-auto-ON-OFF">[OFF]</span></button>
+            </div>
+          </div>
+          <div class="rune-card uru hidden">
+            <div class="header">
+              <p>Uru</p>
+            </div>
+            <div class="body">
+              <p>Infusion <br />
+                <span id="current-uru-infusion"></span>/ <span id="max-uru-infusion"></span>
+              </p>
+              <button id="infuse-uru-rune" class="btn">Infuse Runic Power</button>
+              <p class="font-12">Each Rune adds +5 to <br/>Max HP</p>
+              <button id="infuse-uru-rune-auto" class="btn text-center auto-infuse hidden">Auto Infuse<br/><span class="infuse-uru-rune-auto-ON-OFF">[OFF]</span></button>
+            </div>
+          </div>
+        </div>
+        <!-- Armory -->
+        <div class="inner-page page-3">
+          <div class="armory-card armory-card-1 active">
+            <div class="header">
+              <p>Bronze Materials <span class="next">-></span>
+              </p>
+            </div>
+            <div class="body">
+              <div class="armor-pieces">
+                <div class="armor-piece">
+                  <p>Bronze Greaves</p>
+                  <div>
+                    <p class="font-12">+ <span class="bronze-greaves-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="bronze-greaves-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="bronze-greaves-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-bronze-greaves" class="btn">Forge <br />
+                    <span id="bronze-greaves-cost">0</span> Bronze </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Bronze Legs</p>
+                  <div>
+                    <p class="font-12">+ <span class="bronze-legs-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="bronze-legs-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="bronze-legs-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-bronze-legs" class="btn">Forge <br />
+                    <span id="bronze-legs-cost">0</span> Bronze </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Bronze Gauntlets</p>
+                  <div>
+                    <p class="font-12">+ <span class="bronze-gauntlets-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="bronze-gauntlets-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="bronze-gauntlets-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-bronze-gauntlets" class="btn">Forge <br />
+                    <span id="bronze-gauntlets-cost">0</span> Bronze </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Bronze Plate</p>
+                  <div>
+                    <p class="font-12">+ <span class="bronze-plate-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="bronze-plate-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="bronze-plate-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-bronze-plate" class="btn">Forge <br />
+                    <span id="bronze-plate-cost">0</span> Bronze </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Bronze Helm</p>
+                  <div>
+                    <p class="font-12">+ <span class="bronze-helm-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="bronze-helm-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="bronze-helm-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-bronze-helm" class="btn">Forge <br />
+                    <span id="bronze-helm-cost">0</span> Bronze </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Bronze Pauldrons</p>
+                  <div>
+                    <p class="font-12">+ <span class="bronze-pauldrons-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="bronze-pauldrons-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="bronze-pauldrons-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-bronze-pauldrons" class="btn">Forge <br />
+                    <span id="bronze-pauldrons-cost">0</span> Bronze </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Bronze Sword</p>
+                  <div>
+                    <p class="font-12">+ <span class="bronze-sword-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="bronze-sword-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="bronze-sword-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-bronze-sword" class="btn">Forge <br />
+                    <span id="bronze-sword-cost">0</span> Bronze </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Bronze Shield</p>
+                  <div>
+                    <p class="font-12">+ <span class="bronze-shield-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="bronze-shield-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="bronze-shield-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-bronze-shield" class="btn">Forge <br />
+                    <span id="bronze-shield-cost">0</span> Bronze </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="armory-card armory-card-2">
+            <div class="header">
+              <p>
+                <span class="prev">
+                  <- </span> Iron Materials <span class="next">-></span>
+              </p>
+            </div>
+            <div class="body">
+              <div class="armor-pieces">
+                <div class="armor-piece">
+                  <p>Iron Greaves</p>
+                  <div>
+                    <p class="font-12">+ <span class="iron-greaves-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="iron-greaves-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="iron-greaves-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-iron-greaves" class="btn">Forge <br />
+                    <span id="iron-greaves-cost">0</span> Iron </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Iron Legs</p>
+                  <div>
+                    <p class="font-12">+ <span class="iron-legs-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="iron-legs-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="iron-legs-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-iron-legs" class="btn">Forge <br />
+                    <span id="iron-legs-cost">0</span> Iron </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Iron Gauntlets</p>
+                  <div>
+                    <p class="font-12">+ <span class="iron-gauntlets-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="iron-gauntlets-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="iron-gauntlets-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-iron-gauntlets" class="btn">Forge <br />
+                    <span id="iron-gauntlets-cost">0</span> Iron </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Iron Plate</p>
+                  <div>
+                    <p class="font-12">+ <span class="iron-plate-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="iron-plate-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="iron-plate-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-iron-plate" class="btn">Forge <br />
+                    <span id="iron-plate-cost">0</span> Iron </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Iron Helm</p>
+                  <div>
+                    <p class="font-12">+ <span class="iron-helm-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="iron-helm-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="iron-helm-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-iron-helm" class="btn">Forge <br />
+                    <span id="iron-helm-cost">0</span> Iron </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Iron Pauldrons</p>
+                  <div>
+                    <p class="font-12">+ <span class="iron-pauldrons-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="iron-pauldrons-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="iron-pauldrons-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-iron-pauldrons" class="btn">Forge <br />
+                    <span id="iron-pauldrons-cost">0</span> Iron </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Iron Sword</p>
+                  <div>
+                    <p class="font-12">+ <span class="iron-sword-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="iron-sword-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="iron-sword-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-iron-sword" class="btn">Forge <br />
+                    <span id="iron-sword-cost">0</span> Iron </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Iron Shield</p>
+                  <div>
+                    <p class="font-12">+ <span class="iron-shield-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="iron-shield-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="iron-shield-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-iron-shield" class="btn">Forge <br />
+                    <span id="iron-shield-cost">0</span> Iron </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="armory-card armory-card-3">
+            <div class="header">
+              <p>
+                <span class="prev">
+                  <- </span> Mythril Materials <span class="next">-></span>
+              </p>
+            </div>
+            <div class="body">
+              <div class="armor-pieces">
+                <div class="armor-piece">
+                  <p>Mythril Greaves</p>
+                  <div>
+                    <p class="font-12">+ <span class="mythril-greaves-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="mythril-greaves-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="mythril-greaves-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-mythril-greaves" class="btn">Forge <br />
+                    <span id="mythril-greaves-cost">0</span> Mythril </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Mythril Legs</p>
+                  <div>
+                    <p class="font-12">+ <span class="mythril-legs-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="mythril-legs-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="mythril-legs-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-mythril-legs" class="btn">Forge <br />
+                    <span id="mythril-legs-cost">0</span> Mythril </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Mythril Gauntlets</p>
+                  <div>
+                    <p class="font-12">+ <span class="mythril-gauntlets-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="mythril-gauntlets-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="mythril-gauntlets-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-mythril-gauntlets" class="btn">Forge <br />
+                    <span id="mythril-gauntlets-cost">0</span> Mythril </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Mythril Plate</p>
+                  <div>
+                    <p class="font-12">+ <span class="mythril-plate-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="mythril-plate-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="mythril-plate-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-mythril-plate" class="btn">Forge <br />
+                    <span id="mythril-plate-cost">0</span> Mythril </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Mythril Helm</p>
+                  <div>
+                    <p class="font-12">+ <span class="mythril-helm-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="mythril-helm-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="mythril-helm-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-mythril-helm" class="btn">Forge <br />
+                    <span id="mythril-helm-cost">0</span> Mythril </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Mythril Pauldrons</p>
+                  <div>
+                    <p class="font-12">+ <span class="mythril-pauldrons-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="mythril-pauldrons-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="mythril-pauldrons-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-mythril-pauldrons" class="btn">Forge <br />
+                    <span id="mythril-pauldrons-cost">0</span> Mythril </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Mythril Sword</p>
+                  <div>
+                    <p class="font-12">+ <span class="mythril-sword-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="mythril-sword-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="mythril-sword-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-mythril-sword" class="btn">Forge <br />
+                    <span id="mythril-sword-cost">0</span> Mythril </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Mythril Shield</p>
+                  <div>
+                    <p class="font-12">+ <span class="mythril-shield-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="mythril-shield-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="mythril-shield-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-mythril-shield" class="btn">Forge <br />
+                    <span id="mythril-shield-cost">0</span> Mythril </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="armory-card armory-card-4">
+            <div class="header">
+              <p>
+                <span class="prev">
+                  <- </span> Adamant Materials <span class="next">-></span>
+              </p>
+            </div>
+            <div class="body">
+              <div class="armor-pieces">
+                <div class="armor-piece">
+                  <p>Adamant Greaves</p>
+                  <div>
+                    <p class="font-12">+ <span class="adamant-greaves-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="adamant-greaves-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="adamant-greaves-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-adamant-greaves" class="btn">Forge <br />
+                    <span id="adamant-greaves-cost">0</span> Adamant </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Adamant Legs</p>
+                  <div>
+                    <p class="font-12">+ <span class="adamant-legs-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="adamant-legs-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="adamant-legs-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-adamant-legs" class="btn">Forge <br />
+                    <span id="adamant-legs-cost">0</span> Adamant </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Adamant Gauntlets</p>
+                  <div>
+                    <p class="font-12">+ <span class="adamant-gauntlets-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="adamant-gauntlets-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="adamant-gauntlets-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-adamant-gauntlets" class="btn">Forge <br />
+                    <span id="adamant-gauntlets-cost">0</span> Adamant </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Adamant Plate</p>
+                  <div>
+                    <p class="font-12">+ <span class="adamant-plate-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="adamant-plate-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="adamant-plate-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-adamant-plate" class="btn">Forge <br />
+                    <span id="adamant-plate-cost">0</span> Adamant </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Adamant Helm</p>
+                  <div>
+                    <p class="font-12">+ <span class="adamant-helm-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="adamant-helm-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="adamant-helm-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-adamant-helm" class="btn">Forge <br />
+                    <span id="adamant-helm-cost">0</span> Adamant </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Adamant Pauldrons</p>
+                  <div>
+                    <p class="font-12">+ <span class="adamant-pauldrons-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="adamant-pauldrons-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="adamant-pauldrons-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-adamant-pauldrons" class="btn">Forge <br />
+                    <span id="adamant-pauldrons-cost">0</span> Adamant </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Adamant Sword</p>
+                  <div>
+                    <p class="font-12">+ <span class="adamant-sword-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="adamant-sword-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="adamant-sword-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-adamant-sword" class="btn">Forge <br />
+                    <span id="adamant-sword-cost">0</span> Adamant </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Adamant Shield</p>
+                  <div>
+                    <p class="font-12">+ <span class="adamant-shield-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="adamant-shield-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="adamant-shield-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-adamant-shield" class="btn">Forge <br />
+                    <span id="adamant-shield-cost">0</span> Adamant </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="armory-card armory-card-5">
+            <div class="header">
+              <p>
+                <span class="prev">
+                  <- </span> Titanium Materials
+              </p>
+            </div>
+            <div class="body">
+              <div class="armor-pieces">
+                <div class="armor-piece">
+                  <p>Titanium Greaves</p>
+                  <div>
+                    <p class="font-12">+ <span class="titanium-greaves-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="titanium-greaves-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="titanium-greaves-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-titanium-greaves" class="btn">Forge <br />
+                    <span id="titanium-greaves-cost">0</span> Titanium </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Titanium Legs</p>
+                  <div>
+                    <p class="font-12">+ <span class="titanium-legs-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="titanium-legs-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="titanium-legs-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-titanium-legs" class="btn">Forge <br />
+                    <span id="titanium-legs-cost">0</span> Titanium </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Titanium Gauntlets</p>
+                  <div>
+                    <p class="font-12">+ <span class="titanium-gauntlets-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="titanium-gauntlets-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="titanium-gauntlets-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-titanium-gauntlets" class="btn">Forge <br />
+                    <span id="titanium-gauntlets-cost">0</span> Titanium </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Titanium Plate</p>
+                  <div>
+                    <p class="font-12">+ <span class="titanium-plate-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="titanium-plate-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="titanium-plate-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-titanium-plate" class="btn">Forge <br />
+                    <span id="titanium-plate-cost">0</span> Titanium </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Titanium Helm</p>
+                  <div>
+                    <p class="font-12">+ <span class="titanium-helm-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="titanium-helm-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="titanium-helm-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-titanium-helm" class="btn">Forge <br />
+                    <span id="titanium-helm-cost">0</span> Titanium </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Titanium Pauldrons</p>
+                  <div>
+                    <p class="font-12">+ <span class="titanium-pauldrons-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="titanium-pauldrons-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="titanium-pauldrons-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-titanium-pauldrons" class="btn">Forge <br />
+                    <span id="titanium-pauldrons-cost">0</span> Titanium </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Titanium Sword</p>
+                  <div>
+                    <p class="font-12">+ <span class="titanium-sword-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="titanium-sword-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="titanium-sword-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-titanium-sword" class="btn">Forge <br />
+                    <span id="titanium-sword-cost">0</span> Titanium </button>
+                </div>
+                <div class="armor-piece">
+                  <p>Titanium Shield</p>
+                  <div>
+                    <p class="font-12">+ <span class="titanium-shield-stats-hp">0</span> HP </p>
+                    <p class="font-12">+ <span class="titanium-shield-stats-str">0</span> STR </p>
+                    <p class="font-12">+ <span class="titanium-shield-stats-def">0</span> DEF </p>
+                  </div>
+                  <button id="forge-titanium-shield" class="btn">Forge <br />
+                    <span id="titanium-shield-cost">0</span> Titanium </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- end kingdom 1 -->
+      <section class="kingdom kingdom-2 hidden">
+        <section class="inner-tabs">
+          <div class="tab tab-1 active">Units</div>
+          <div class="tab tab-2 hidden">Metalurgy</div>
+        </section>
+        <div class="inner-page page-1 active">
+
+          <div class="unit-card unlock-card lapidary-unlock hidden">
+            <div class="body">
+              <p>Unlock Dwarven Lapidaries</p>
+              <button id="lapidary-unlock" class="btn"><span class="lapidary-unlock-cost">0</span> Gold </button>
+            </div>
+
+          </div>
+
+          <div class="unit-card dwarven-lapidary hidden">
+            <div class="header">
+              <p>Dwarven Lapidaries: <span class="total-lapidaries">0</span>
+              </p>
+            </div>
+            <p class="font-11">(<span class="lapidary-gems-per-sec">0</span> gems cut/sec) </p>
+            <p>Each cut gem multiplies Gold Generation</p>
+            <div class="body">
+              <button id="buy-lapidary" class="btn">Buy Lapidary <br />
+                <span class="lapidary-cost">0</span> Gold </button>
+              <button id="buy-lapidary-max" class="btn hidden">Buy Max</button>
+              <button id="auto-buy-lapidary-max" class="btn auto-buy-btn hidden">Auto Buy Max <br />
+                <span class="auto-buy-lapidary-max-ON-OFF">[OFF]</span>
+              </button>
+            </div>
+          </div>
+          
+
+          <div class="unit-card unlock-card miner-unlock hidden">
+            <div class="body">
+              <p>Unlock Dwarven Miners</p>
+              <button id="miner-unlock" class="btn"><span class="miner-unlock-cost">0</span> Gold </button>
+            </div>
+
+          </div>
+
+          <div class="unit-card dwarven-miner hidden">
+            <div class="header">
+              <p>Dwarven Miners: <span class="total-miners">0</span>
+              </p>
+            </div>
+            <p class="font-11">(<span class="miner-ore-per-sec">0</span> ore/sec) </p>
+            <div class="body">
+              <button id="buy-miner" class="btn">Buy Miner <br />
+                <span class="miner-cost">0</span> Gold </button>
+              <button id="buy-miner-max" class="btn hidden">Buy Max</button>
+              <button id="auto-buy-miner-max" class="btn auto-buy-btn hidden">Auto Buy Max <br />
+                <span class="auto-buy-miner-max-ON-OFF">[OFF]</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="unit-card unlock-card brewmaster-unlock hidden">
+            <div class="body">
+              <p>Unlock Dwarven Brewmasters</p>
+              <button id="brewmaster-unlock" class="btn"><span class="brewmaster-unlock-cost">0</span> Gold </button>
+            </div>
+
+          </div>
+
+          <div class="unit-card dwarven-brewmaster hidden">
+            <div class="header">
+              <p>Dwarven Brewmasters: <span class="total-brewmasters">0</span>
+              </p>
+            </div>
+            <p class="font-11">(Increases Dwarves efficiency by <span class="brewmaster-efficiency">0</span>%) </p>
+            <div class="body">
+              <button id="buy-brewmaster" class="btn">Buy Brewmaster <br />
+                <span class="brewmaster-cost">0</span> Gold </button>
+              <button id="buy-brewmaster-max" class="btn hidden">Buy Max</button>
+              <button id="auto-buy-brewmaster-max" class="btn auto-buy-btn hidden">Auto Buy Max <br />
+                <span class="auto-buy-brewmaster-max-ON-OFF">[OFF]</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="inner-page page-2">
+          <div class="unit-card the-great-forge">
+            <div class="header">
+              <p>The Great Forge</p>
+            </div>
+            <div class="body">
+              <div class="flex gap-40">
+                <div class="flex flex-col space-between flex-1 padding-20 border-white">
+                  <progress class="forge-progress iron-progress" value="0" max="100"></progress>
+                  <button id="smelt-iron" class="btn">Iron Smelter <br />
+                    <span class="iron-smelter-ON-OFF">[OFF]</span>
+                  </button>
+                  <p>COST:</p>
+                  <p class="font-11">
+                    <span class="iron-ore-per-tick">0</span> ore/tick
+                  </p>
+
+                  <br/>
+
+                  <p>OUTPUT:</p>
+                  <p class="font-11">
+                    <span class="iron-output">0</span> iron
+                  </p>
+
+                  <hr/>
+
+                  <button id="increase-iron-output" class="btn">Increase Iron output <br/>
+                    Cost: <span class="increase-iron-output-cost">0</span> gold
+                  </button>
+                </div>
+                <div class="flex flex-col space-between flex-1 padding-20 border-white">
+                  <progress class="forge-progress mythril-progress" value="0" max="100"></progress>
+                  <button id="smelt-mythril" class="btn">Mythril Smelter <br />
+                    <span class="mythril-smelter-ON-OFF">[OFF]</span>
+                  </button>
+                  <p>COST:</p>
+                  <p class="font-11">
+                    <span class="mythril-iron-per-tick">0</span> iron/tick
+                  </p>
+                  <p class="font-11">
+                    <span class="mythril-ore-per-tick">0</span> ore/tick
+                  </p>
+
+                  <br/>
+
+                  <p>OUTPUT:</p>
+                  <p class="font-11">
+                    <span class="mythril-output">0</span> mythril
+                  </p>
+
+                  <hr/>
+
+                  <button id="increase-mythril-output" class="btn">Increase Mythril output <br/>
+                    Cost: <span class="increase-mythril-output-cost">0</span> gold
+                  </button>
+
+                </div>
+                <div class="flex flex-col space-between flex-1 padding-20 border-white">
+                  <progress class="forge-progress adamant-progress" value="0" max="100"></progress>
+                  <button id="smelt-adamant" class="btn">Adamant Smelter <br />
+                    <span class="adamant-smelter-ON-OFF">[OFF]</span>
+                  </button>
+                  <p>COST:</p>
+                  <p class="font-11">
+                    <span class="adamant-mythril-per-tick">0</span> mythril/tick
+                  </p>
+                  <p class="font-11">
+                    <span class="adamant-ore-per-tick">0</span> ore/tick
+                  </p>
+
+                  <br/>
+
+                  <p>OUTPUT:</p>
+                  <p class="font-11">
+                    <span class="adamant-output">0</span> adamant
+                  </p>
+
+                  <hr/>
+
+                  <button id="increase-adamant-output" class="btn">Increase Adamant output <br/>
+                    Cost: <span class="increase-adamant-output-cost">0</span> gold
+                  </button>
+
+                </div>
+                <div class="flex flex-col space-between flex-1 padding-20 border-white">
+                  <progress class="forge-progress titanium-progress" value="0" max="100"></progress>
+                  <button id="smelt-titanium" class="btn">Titanium Smelter <br />
+                    <span class="titanium-smelter-ON-OFF">[OFF]</span>
+                  </button>
+                  <p>COST:</p>
+                  <p class="font-11">
+                    <span class="titanium-adamant-per-tick">0</span> adamant/tick
+                  </p>
+                  <p class="font-11">
+                    <span class="titanium-ore-per-tick">0</span> ore/tick
+                  </p>
+
+                  <br/>
+
+                  <p>OUTPUT:</p>
+                  <p class="font-11">
+                    <span class="titanium-output">0</span> titanium
+                  </p>
+
+                  <hr/>
+
+                  <button id="increase-titanium-output" class="btn">Increase Titanium output <br/>
+                    Cost: <span class="increase-titanium-output-cost">0</span> gold
+                  </button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- end kingdom 2 -->
+      <section class="kingdom kingdom-3 hidden">
+        <section class="inner-tabs">
+          <div class="tab tab-1 active">Units</div>
+          <div class="tab tab-2 hidden">Primal Runes</div>
+          <div class="tab tab-3 hidden">Schematics</div>
+        </section>
+
+        <!-- units -->
+        <div class="inner-page page-1 active">
+
+          <div class="unit-card unlock-card goblin-unlock hidden">
+            <div class="body">
+              <p>Unlock Goblins</p>
+              <button id="goblin-unlock" class="btn"><span class="goblin-unlock-cost">0</span> Gold </button>
+            </div>
+
+          </div>
+
+          <div class="unit-card goblin hidden">
+            <div class="header">
+              <p>Goblins: <span class="total-goblins">0</span>
+              </p>
+            </div>
+            <p class="font-11">(multiplying output of <span class="goblin-assist-choice">choice</span> by <span class="goblin-assist-mult">0</span>)</p>
+            <div class="body">
+              <button id="buy-goblin" class="btn">Buy Goblin <br />
+                <span class="goblin-cost">0</span> Gold </button>
+              <button id="buy-goblin-max" class="btn hidden">Buy Max</button>
+              <button id="auto-buy-goblin-max" class="btn auto-buy-btn hidden">Auto Buy Max <br />
+                <span class="auto-buy-goblin-max-ON-OFF">[OFF]</span>
+              </button>
+            </div>
+
+            <hr>
+
+            <div class="goblin-choices">
+                <p>Assign Goblins to help units in other kingdoms</p>
+                <div class="flex">
+                  <div class="flex flex-col">
+                    <button class="btn goblin-choice goblin-choice-peasents">Peasants</button>  
+                    <button class="btn goblin-choice goblin-choice-scholars">Scholars</button>
+                  </div>
+
+                  <div class="flex flex-col">
+                    <button class="btn goblin-choice goblin-choice-miners">Dwarven Miners</button>
+                    <button class="btn goblin-choice goblin-choice-lapidaries">Dwarven Lapidaries</button>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+
+          <div class="unit-card unlock-card mechanic-unlock hidden">
+            <div class="body">
+              <p>Unlock Mechanics</p>
+              <button id="mechanic-unlock" class="btn"><span class="mechanic-unlock-cost">0</span> Gold </button>
+            </div>
+          </div>
+
+          <div class="unit-card mechanic hidden">
+            <div class="header">
+              <p>Goblin Mechanics: <span class="total-mechanics">0</span>
+              </p>
+            </div>
+            <p class="font-11">(<span class="mechanic-knowledge-per-sec">0</span> knowledge/sec)</p>
+            <div class="body">
+              <button id="buy-mechanic" class="btn">Buy Mechanic <br />
+                <span class="mechanic-cost">0</span> Gold </button>
+              <button id="buy-mechanic-max" class="btn hidden">Buy Max</button>
+              <button id="auto-buy-mechanic-max" class="btn auto-buy-btn hidden">Auto Buy Max <br />
+                <span class="auto-buy-mechanic-max-ON-OFF">[OFF]</span>
+              </button>
+
+            </div>
+            
+          </div>
+
+        </div>
+        <!-- Primal Runes -->
+        <div class="inner-page page-2">
+          <div class="primal-rune-card primal-maan">
+            <div class="header">
+              <p>Primal Maan</p>
+            </div>
+            <div class="body">
+              <p>Cost: <br />
+                <span id="primal-maan-rune-cost"></span> Maan rune<br /><span id="primal-maan-rune-cost-goblins"></span> Goblins
+              </p>
+              <button id="create-primal-maan-rune" class="btn">Create Rune</button>
+              <p class="font-12">Each Rune multiplies Peasant production & Goblin assistance</p>
+            </div>
+          </div>
+          <div class="primal-rune-card primal-nyd">
+            <div class="header">
+              <p>Primal Nyd</p>
+            </div>
+            <div class="body">
+              <p>Cost: <br />
+                <span id="primal-nyd-rune-cost"></span> Nyd rune<br /><span id="primal-nyd-rune-cost-goblins"></span> Goblins
+              </p>
+              <button id="create-primal-nyd-rune" class="btn">Create Rune</button>
+              <p class="font-12">Each Rune multiplies Runic Power gain & Goblin assistance</p>
+            </div>
+          </div>
+          <div class="primal-rune-card primal-uru">
+            <div class="header">
+              <p>Primal Uru</p>
+            </div>
+            <div class="body">
+              <p>Cost: <br />
+                <span id="primal-uru-rune-cost"></span> Uru rune<br /><span id="primal-uru-rune-cost-goblins"></span> Goblins
+              </p>
+              <button id="create-primal-uru-rune" class="btn">Create Rune</button>
+              <p class="font-12">Each Rune adds +20 to Max HP & multiply Goblin assistance</p>
+            </div>
+          </div>
+        </div>
+        <!-- Schematics -->
+        <div class="inner-page page-3">
+          <div class="schematics">
+
+            <div class="schematic hydraulic-gauntlets">
+              <p>Hydraulic Gauntlets</p>
+              <p>COST:
+                <span class="font-11">
+                <span class="hydraulic-gauntlets-goblin-cost"></span> Goblins /
+                <span class="hydraulic-gauntlets-ore-cost"></span> Ore /
+                <span class="hydraulic-gauntlets-knowledge-cost"></span> Knowledge
+                </span>
+              </p>
+              <p>EFFECT: <span class="font-11">Chance to attack twice.</span></p>
+
+              <button class="btn btn-schematic">Construct</button>
+
+            </div>
+            <div class="schematic chain-sword-module">
+              <p>Chain Sword Module</p>
+              <p>COST:
+                <span class="font-11">
+                <span class="chain-sword-module-goblin-cost"></span> Goblins /
+                <span class="chain-sword-module-ore-cost"></span> Ore /
+                <span class="chain-sword-module-knowledge-cost"></span> Knowledge
+                </span>
+              </p>
+              <p>EFFECT: <span class="font-11">Adds ability to critically strike.</span></p>
+
+              <button class="btn btn-schematic">Construct</button>
+            </div>
+            <div class="schematic engine-powered-boots">
+              <p>Engine Powered Boots</p>
+              <p>COST:
+                <span class="font-11">
+                <span class="engine-powered-boots-goblin-cost"></span> Goblins /
+                <span class="engine-powered-boots-ore-cost"></span> Ore /
+                <span class="engine-powered-boots-knowledge-cost"></span> Knowledge
+                </span>
+              </p>
+              <p>EFFECT: <span class="font-11">Allows ability to dodge attacks.</span></p>
+
+              <button class="btn btn-schematic">Construct</button>
+            </div>
+            <div class="schematic blood-transfusion-pauldrons">
+              <p>Blood Transfusion Pauldrons</p>
+              <p>COST:
+                <span class="font-11">
+                <span class="blood-transfusion-pauldrons-goblin-cost"></span> Goblins /
+                <span class="blood-transfusion-pauldrons-ore-cost"></span> Ore /
+                <span class="blood-transfusion-pauldrons-knowledge-cost"></span> Knowledge
+                </span>
+              </p>
+              <p>EFFECT: <span class="font-11">Increase Regen.</span></p>
+
+              <button class="btn btn-schematic">Construct</button>
+            </div>
+
+          </div>
+
+      </section>
+      <!-- end kingdom 3 -->
+
+      <!-- Settings -->
+      <section class="kingdom kingdom-5">
+        <p class="text-center">Game will autosave every 5 minutes</p>
+        <br/>
+        <div class="flex">
+          <div class="flex flex-col flex-1 save-field">
+            <button id="save-game" class="btn">Save Game</button>
+          </div>
+          <div class="flex flex-col flex-1 save-field">
+            <button id="hard-reset" class="btn">Hard Reset Game</button>
+          </div>
+        </div>
+      </section>   
+    </section>
+
+    <div class="text-window hidden">
+      <p>After defeating the dragon these lands are liberated and under your just rule. As peace time approaches your loyal scholars inform you of their latest findings.</p>
+      <br/>
+      <p>"A demonic plane of existance has been discovered and we fear an invasion is soon approaching! You must travel there and destroy the three heads of Lucifer to stop any future invasion!"</p>
+      <br/>
+      <p>Your scholars can conjured a single portal to let 50 men through. Perhaps you can find way to reinforce your army while in Hell.</p>
+      <br/>
+      <button id="enter-hell" class="btn flex m-auto">Enter Hell</button>
+    </div>
+
+</section>
+
+<section id="phase-2" class="hidden">
+
+  <div class="phase-2-ui-wrapper">
+    <div class="phase-2-ui-top">
+      <div class="phase-2-ui phase-2-ui-resources">
+        <h3>Troops: <span id="total-troops">0</span></h3>
+        <br/>
+
+        <h3>Portals: <span id="total-portals">0</span> <span class="font-11">(adding <span class="troops-per-sec">0</span> troops/sec)</span></h3>
+        <p class="font-11">Portal Closing in: <span id="portal-counter"></span></p>
+          <br/>
+        <h3>Demon Artifacts: <span id="total-demon-artifacts">0</span></h3>
+          <br/>
+        <h3>Demon Souls: <span id="total-demon-souls">0</span></h3>
+        <br/>
+        <h3><span id="total-hell-conquered"></span>% of Hell Conquered</h3>
+        <p class="font-11">Increases portal strength</p>
+        <br/>
+        <h3><span id="total-faces-destroyed"></span> / 3 Faces Destroyed</h3>
+      </div>
+      <div class="phase-2-ui phase-2-ui-map"></div>
+
+    </div>
+
+    <div class="phase-2-ui-bottom">
+      <div class="phase-2-ui phase-2-ui-text-box">
+        <div>
+          <p class="text-scroll-6"></p>
+          <p class="text-scroll-5"></p>
+          <p class="text-scroll-4"></p>
+          <p class="text-scroll-3"></p>
+          <p class="text-scroll-2"></p>
+          <p class="text-scroll-1"></p>
+        </div>
+
+        <h3><span class="location-title"></span> <br/><span class="conquering-percentage"></span>% Conquered</h3>
+      </div>
+      <div class="phase-2-ui phase-2-ui-controls">
+
+        <div class="phase-2-ui-controls-buttons flex gap-10">
+          <div class="flex flex-col gap-10">
+            <div class="flex gap-10">
+              <div class="flex-1">
+                <button id="create-portal" class="btn w-100">Create Portal<br/>
+                Cost: <span class="demon-artifacts-cost"></span> Demon Artifacts</button>        
+              </div>
+              <div class="flex-1">
+                <button id="conjure-demon-soul" class="btn w-100">Conjure Demon Soul<br/>
+                  Cost: <span class="conjure-demon-soul-cost"></span> Demon Artifacts</button>   
+              </div>  
+            </div>
+            <div class="flex gap-10">
+              <div class="flex-1">
+                <button id="upgrade-portals" class="btn w-100">Upgrade Portals<br />
+                  x <span class="portal-efficiency">1.00</span><br/>
+                Cost: <span class="portal-efficiency-cost"></span> Demon Souls</button>        
+              </div>
+              <div class="flex-1">
+                <button id="upgrade-troops" class="btn w-100">Upgrade Troops<br />
+                  x <span class="troop-efficiency">1.00</span><br/>
+                  Cost: <span class="troop-efficiency-cost"></span> Demon Souls</button>   
+              </div>  
+            </div>
+
+          </div>
+   
+        </div>
+
+          <div class="phase-2-ui-controls-inner">
+          
+            <div class="flex flex-col items-center gap-10">
+              <div>
+                <button id="up" class="btn movement-btn">&#8593;</button>
+              </div>
+              <div class="flex gap-80">
+                <button id="left" class="btn movement-btn">&#8592;</button>
+                <button id="right" class="btn movement-btn">&#8594;</button>
+              </div>
+              <div>
+                <button id="down" class="btn movement-btn">&#8595;</button>
+              </div>
+            </div>
+
+          </div>
+
+      </div>
+
+      <div class="phase-2-ui phase-2-ui-save">
+          <p class="padding-b-10">Game will autosave every 5 minutes</p>
+        <div class="flex flex-col flex-1 save-field">
+          <button id="save-game-2" class="btn">Save Game</button>
+        </div>
+        <br />
+        <div class="flex flex-col flex-1 save-field">
+          <button id="hard-reset-2" class="btn">Hard Reset Game</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+    <section class="win-screen hidden">
+      <div>
+        <h2>You Win!</h2>
+        <br />
+        <p>Satan and his forces have been driven back by the might, courage, and bravery of your people.</p>
+        <p>From the depths of hell your rallying cry can be heard.</p>
+        <p>For King & Country!</p>
+        <br />
+        <h3>Total Time: <span class="total-time"><span class="total-hours"></span>:<span class="total-mins"></span>:<span class="total-secs"></span></span></h3>
+        <br />
+        <button id="hard-reset-3" class="btn">Hard Reset Game</button>
+      </div>
+    </section>
+
+    <script type="text/javascript" src="assets/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="assets/js/tabs.js"></script>
+    <script type="text/javascript" src="assets/js/peasents.js"></script>
+    <script type="text/javascript" src="assets/js/scholars.js"></script>
+    <script type="text/javascript" src="assets/js/runes.js"></script>
+    <script type="text/javascript" src="assets/js/blacksmiths.js"></script>
+    <script type="text/javascript" src="assets/js/metals.js"></script>
+    <script type="text/javascript" src="assets/js/miners.js"></script>
+    <script type="text/javascript" src="assets/js/lapidaries.js"></script>
+    <script type="text/javascript" src="assets/js/brewmasters.js"></script>
+    <script type="text/javascript" src="assets/js/goblins.js"></script>
+    <script type="text/javascript" src="assets/js/mechanics.js"></script>
+    <script type="text/javascript" src="assets/js/combat.js"></script>
+    <script type="text/javascript" src="assets/js/phase2.js"></script>
+    <script type="text/javascript" src="assets/js/game.js"></script>
+<!--客服 开始-->
+<script src="//g8hh.github.io/static/js/jquery.min.js"></script>
+<link rel="stylesheet" href="//g8hh.github.io/static/css/kf.css" type="text/css" media="screen" charset="utf-8">
+<script src="//g8hh.github.io/static/js/kf.js"></script>
+<!-- 客服 结束 -->
+<!--站长统计--> 
+<div style="display: none">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?028b1b5f659ed138230f4cafd7ad0dfc";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    </div>
+  </body>
+</html>
